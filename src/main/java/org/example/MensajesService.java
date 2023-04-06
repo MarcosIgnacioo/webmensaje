@@ -18,14 +18,26 @@ public class MensajesService {
         MensajesDAO.crearMensajeDB(registro);
     }
 
-    public static void listarMensajes(){
-
+    public static void listarMensajes() throws SQLException {
+        MensajesDAO.leerMensajesDB();
     }
 
-    public static void borrarMensaje(){
-
+    public static void borrarMensaje() throws SQLException {
+        System.out.println("Cual es el id del mensaje que quiere borrar");
+        int msgId = scn.nextInt();
+        MensajesDAO.borrarMensajesDB(msgId);
     }
 
-    public static void editarMensaje(){
+    public static void editarMensaje() throws SQLException {
+
+        System.out.println("Cual es el id del mensaje que quiere editar");
+        int msgId = scn.nextInt();
+        scn.nextLine();
+        System.out.println("Cual es el mensaje que quiere escribir");
+        String msg = scn.nextLine();
+        Mensajes registro = new Mensajes();
+        registro.setMensaje(msg);
+        registro.setIdMensaje(msgId);
+        MensajesDAO.actualizarMensajeDB(registro);
     }
 }
